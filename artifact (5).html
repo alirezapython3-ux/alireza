@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ɱαɳԃҽɱ</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700;800&family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg1: #050505; /* Dark background */
+      --bg2: #0d0d0d; /* Slightly lighter dark */
+      --card-bg: rgba(0, 255, 204, 0.08); /* Cybernetic glow */
+      --card-border: rgba(0, 255, 204, 0.4); /* Neon border */
+      --stroke-light: rgba(255, 255, 255, 0.12); /* Subtle line */
+      --text-primary: #ffffff;
+      --text-muted: rgba(255, 255, 255, 0.72);
+      --accent-neon: #00ffcc; /* Main neon accent */
+      --accent-glow: rgba(0, 255, 204, 0.2); /* Glow effect */
+      --radius: 16px;
+      --shadow-heavy: 0 20px 50px rgba(0, 0, 0, 0.6); /* Heavy shadow */
+      --font-orbitron: 'Orbitron', sans-serif;
+      --font-vazir: 'Vazirmatn', sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: var(--font-vazir);
+      color: var(--text-primary);
+      background: linear-gradient(180deg, var(--bg1), var(--bg2));
+      overflow-x: hidden;
+      scroll-behavior: smooth; /* Smooth scrolling */
+    }
+
+    /* Background Animation - Subtle Pulsing */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at 15% 15%, rgba(0, 212, 255, 0.1), transparent 28%),
+                  radial-gradient(circle at 80% 10%, rgba(124, 92, 255, 0.1), transparent 24%),
+                  radial-gradient(circle at 50% 85%, rgba(36, 255, 181, 0.08), transparent 28%);
+      opacity: 0.7;
+      pointer-events: none;
+      z-index: -1;
+      animation: pulse-bg 20s infinite alternate ease-in-out;
+    }
+    @keyframes pulse-bg {
+      from { transform: scale(1); opacity: 0.6; }
+      to { transform: scale(1.05); opacity: 0.8; }
+    }
+
+    .wrap {
+      width: min(1180px, calc(100% - 24px));
+      margin: 0 auto;
+      padding: 26px 0 56px;
+    }
+
+    /* Hero Section - Heavy Typography & Glitch */
+    .hero {
+      padding: 40px 30px;
+      border: 1px solid var(--stroke-light);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01));
+      border-radius: var(--radius) + 6px;
+      box-shadow: var(--shadow-heavy);
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-family: var(--font-orbitron);
+      font-size: clamp(3rem, 7vw, 6.5rem);
+      letter-spacing: .08em;
+      color: var(--text-primary);
+      text-shadow: 0 0 10px var(--accent-neon), 0 0 20px var(--accent-glow);
+      animation: glitch-hero 1.5s infinite linear alternate;
+      display: inline-block; /* Needed for text-shadow on full width */
+    }
+
+    @keyframes glitch-hero {
+      0% { transform: translate(0); text-shadow: 0 0 10px var(--accent-neon), 0 0 20px var(--accent-glow); }
+      10% { text-shadow: -2px 0 var(--accent-neon), 2px 0 var(--accent-neon); }
+      20% { transform: skew(2deg); text-shadow: 1px 0 var(--accent-neon), -1px 0 var(--accent-neon); }
+      30% { transform: skew(-2deg); }
+      40% { transform: translate(0); }
+      50% { text-shadow: -1px 0 var(--accent-neon), 1px 0 var(--accent-neon); }
+      60% { transform: skew(1deg); }
+      70% { transform: skew(-1deg); }
+      80% { transform: translate(0); }
+      90% { text-shadow: -2px 0 var(--accent-neon), 2px 0 var(--accent-neon); }
+      100% { transform: translate(0); text-shadow: 0 0 10px var(--accent-neon), 0 0 20px var(--accent-glow); }
+    }
+
+    /* Navigation - Minimal & Cyber */
+    .nav {
+      margin-top: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .nav button {
+      border: 1px solid var(--card-border);
+      background: transparent;
+      color: var(--text-muted);
+      padding: 12px 24px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-family: var(--font-orbitron);
+      letter-spacing: .06em;
+      transition: all .25s ease;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+    .nav button::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: linear-gradient(135deg, var(--accent-neon), rgba(0, 212, 255, 0.6));
+      transition: all .25s ease;
+      z-index: -1;
+    }
+    .nav button:hover, .nav button.active {
+      color: var(--text-primary);
+      border-color: var(--accent-neon);
+      box-shadow: 0 0 10px var(--accent-glow);
+    }
+    .nav button:hover::before, .nav button.active::before {
+      left: 0;
+    }
+
+    /* Content Sections */
+    .section {
+      display: none;
+      margin-top: 28px;
+      padding: 36px;
+      border: 1px solid var(--card-border);
+      background: var(--card-bg);
+      backdrop-filter: blur(18px);
+      box-shadow: var(--shadow-heavy);
+      border-radius: var(--radius);
+      animation: fade-in .4s ease both;
+      position: relative;
+      overflow: hidden;
+    }
+    .section.active { display: block; }
+    .section::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(135deg, rgba(0, 212, 255, 0.08), rgba(124, 92, 255, 0.08));
+        opacity: 0.4;
+        pointer-events: none;
+        z-index: 0;
+    }
+    @keyframes fade-in {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h2 {
+      font-family: var(--font-orbitron);
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      letter-spacing: .05em;
+      margin-bottom: 20px;
+      color: var(--text-primary);
+      text-shadow: 0 0 5px var(--accent-neon);
+    }
+
+    p {
+      line-height: 2.2;
+      color: var(--text-muted);
+      font-size: 1.1rem;
+    }
+
+    /* Track List - Luxury Cards */
+    .song-list {
+      display: grid;
+      gap: 20px;
+    }
+    .song {
+      padding: 24px;
+      border-radius: var(--radius);
+      background: rgba(0,0,0,.3); /* Darker card background */
+      border: 1px solid var(--stroke-light);
+      box-shadow: 0 10px 25px rgba(0,0,0,.4);
+      transition: all .3s ease;
+      cursor: pointer;
+    }
+    .song:hover {
+      transform: translateY(-6px) scale(1.02);
+      box-shadow: 0 16px 30px rgba(0,0,0,.5);
+      border-color: var(--accent-neon);
+    }
+    .song strong {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 1.4rem;
+      color: var(--text-primary);
+      font-family: var(--font-orbitron);
+      letter-spacing: .04em;
+    }
+    .song p { font-size: 1rem; margin: 0; }
+
+    /* Gallery - Minimalist Grid */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr); /* Two columns for mobile-first */
+      gap: 16px;
+    }
+    .gallery-item {
+      aspect-ratio: 1/1;
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--card-border);
+      box-shadow: 0 14px 30px rgba(0,0,0,.35);
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      transition: all .3s ease;
+    }
+    .gallery-item::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(124, 92, 255, 0.1));
+      opacity: 0.6;
+      transition: opacity .3s ease;
+    }
+    .gallery-item:hover {
+      transform: scale(1.03);
+      box-shadow: 0 18px 38px rgba(0,0,0,.45);
+    }
+    .gallery-item:hover::after { opacity: 0.8; }
+
+    /* Contact Form - Sleek & Interactive */
+    .contact-form {
+      display: grid;
+      gap: 16px;
+      max-width: 540px;
+      margin: 0 auto; /* Center the form */
+    }
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      border: none;
+      outline: none;
+      border-radius: var(--radius);
+      padding: 16px;
+      font-family: inherit;
+      color: var(--text-primary);
+      background: rgba(0,0,0,.25);
+      border: 1px solid var(--card-border);
+      transition: all .3s ease;
+    }
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      border-color: var(--accent-neon);
+      box-shadow: 0 0 12px var(--accent-glow);
+    }
+    .contact-form button {
+      border: none;
+      border-radius: var(--radius);
+      padding: 16px 24px;
+      cursor: pointer;
+      color: #050505; /* Dark text for contrast */
+      font-weight: 800;
+      font-family: var(--font-orbitron);
+      letter-spacing: .05em;
+      background: linear-gradient(135deg, var(--accent-neon), #24ffb5); /* Gradient button */
+      transition: all .3s ease;
+    }
+    .contact-form button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 15px rgba(0, 255, 204, 0.4);
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 36px;
+      padding-top: 20px;
+      border-top: 1px solid var(--stroke-light);
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    @media (min-width: 768px) {
+      .gallery { grid-template-columns: repeat(4, 1fr); } /* 4 columns on larger screens */
+    }
+    @media (max-width: 768px) {
+      .hero h1 { font-size: clamp(2.5rem, 6vw, 5rem); }
+      .section { padding: 24px; }
+      .nav button { padding: 10px 18px; }
+    }
+    @media (max-width: 500px) {
+      .nav button { width: 100%; }
+      .gallery { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="hero">
+      <h1 class="glitch">ɱαɳԃҽɱ</h1>
+      <div class="nav">
+        <button class="active" onclick="showSection('home', this)">خانه</button>
+        <button onclick="showSection('songs', this)">آهنگ‌ها</button>
+        <button onclick="showSection('gallery', this)">گالری</button>
+        <button onclick="showSection('contact', this)">تماس</button>
+      </div>
+    </div>
+
+    <section id="home" class="section active">
+      <h2>فضای هنری</h2>
+      <p>
+        اینجا ترکیبی از هنر خیابانی و لوکس مدرن است. نورهای نئونی، تایپوگرافی سنگین و انیمیشن‌های ظریف، تجربه‌ای منحصر به فرد را برای شما رقم می‌زنند.
+      </p>
+    </section>
+
+    <section id="songs" class="section">
+      <h2>آهنگ‌ها</h2>
+      <div class="song-list">
+        <div class="song" onclick="alert('پخش آهنگ 1')">
+          <strong>01. Midnight Signal</strong>
+          <p>ضرب‌های قوی و فضایی تاریک.</p>
+        </div>
+        <div class="song" onclick="alert('پخش آهنگ 2')">
+          <strong>02. Neon Heartbeat</strong>
+          <p>ضربان نئونی در قلب شب.</p>
+        </div>
+        <div class="song" onclick="alert('پخش آهنگ 3')">
+          <strong>03. Echoes of Tomorrow</strong>
+          <p>بازتابی از آینده.</p>
+        </div>
+        <div class="song" onclick="alert('پخش آهنگ 4')">
+          <strong>04. Crimson Sky</strong>
+          <p>آسمانی به رنگ سرخ.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="gallery" class="section">
+      <h2>گالری</h2>
+      <div class="gallery">
+        <div class="gallery-item" style="background-image:url('https://via.placeholder.com/600x600/00d4ff/ffffff?text=ART01')"></div>
+        <div class="gallery-item" style="background-image:url('https://via.placeholder.com/600x600/7c5cff/ffffff?text=ART02')"></div>
+        <div class="gallery-item" style="background-image:url('https://via.placeholder.com/600x600/24ffb5/ffffff?text=ART03')"></div>
+        <div class="gallery-item" style="background-image:url('https://via.placeholder.com/600x600/ff5c8a/ffffff?text=ART04')"></div>
+        <div class="gallery-item" style="background-image:url('https://via.placeholder.com/600x600/00d4ff/ffffff?text=ART05')"></div>
+        <div class="gallery-item" style="background-image:url('https://via.placeholder.com/600x600/7c5cff/ffffff?text=ART06')"></div>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <h2>تماس</h2>
+      <form class="contact-form" onsubmit="event.preventDefault(); alert('پیام شما با موفقیت ارسال شد.');">
+        <input type="text" placeholder="نام شما" required>
+        <input type="email" placeholder="ایمیل شما" required>
+        <textarea rows="5" placeholder="پیام شما" required></textarea>
+        <button type="submit">ارسال پیام</button>
+      </form>
+    </section>
+
+    <div class="footer">
+      © 2024 ɱαɳԃҽɱ - All Rights Reserved. Cyber Luxe Rap Experience.
+    </div>
+  </div>
+
+  <script>
+    function showSection(id, btn) {
+      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+
+      document.querySelectorAll('.nav button').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+    }
+  </script>
+</body>
+</html>
